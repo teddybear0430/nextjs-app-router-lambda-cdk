@@ -9,12 +9,12 @@ import { HttpApi } from '@aws-cdk/aws-apigatewayv2-alpha';
 import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import * as path from 'path';
 
-export class CdkStack extends cdk.Stack {
+export class ServerlessNextJsAppStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     // Next.jsを動作させるLambdaの定義
-    const handler = new DockerImageFunction(this, 'Handler', {
+    const handler = new DockerImageFunction(this, 'NextJsApp', {
       code: DockerImageCode.fromImageAsset(path.join(__dirname, '../../'), {
         platform: Platform.LINUX_AMD64,
         exclude: ['cdk'],
