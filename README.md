@@ -13,3 +13,26 @@ IaC（AWS CDK）で、インフラリソースは管理している。
     - Lambda
     - API Gateway
     - ECR
+
+## Dockerイメージのテスト
+ランタイムインターフェイスエミュレータを使用して関数をローカルで実行することができる。
+
+https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/images-test.html
+
+### コンテナイメージをビルドする
+
+```sh
+docker build -t hoge .
+```
+
+### docker run でコンテナを起動する
+
+```sh
+docker run --rm -p 3000:3000 hoge:latest
+```
+
+### アクセスする
+
+```sh
+open http://localhost:3000
+```
