@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/nodejs:18 as builder
+FROM node:18-alpine as builder
 WORKDIR /app
 
 COPY . .
@@ -7,14 +7,17 @@ RUN npm update && npm run build
 FROM public.ecr.aws/lambda/nodejs:18 as runner
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.7.1 /lambda-adapter /opt/extensions/lambda-adapter
 
-ENV PORT=3000 NODE_ENV=production
+ENV PORT=3000
+ENV NODE_ENV=production
 
+ # Lambda 関数コードへのパスを指定
 WORKDIR ${LAMBDA_TASK_ROOT}
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next.config.js ./next.config.js
-COPY --from=builder /app/public ./public
-RUN ln -s /tmp/cache ./.next/cache
 
-ENTRYPOINT ["npm", "run", "start", "--loglevel=verbose", "--cache=/tmp/npm"]
+# standalone モードを利用すると、publicと.next/staticはデフォルトでは含まれないので明示的にコピーする必要がある
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+ENTRYPOINT ["node"]
+CMD ["server.js"]
