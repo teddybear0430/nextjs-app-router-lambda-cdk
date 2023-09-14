@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
 export function Header() {
   return (
@@ -11,14 +11,7 @@ export function Header() {
           rel="noopener noreferrer"
         >
           Sample App By{' '}
-          <Image
-            src="/vercel.svg"
-            alt="Vercel Logo"
-            className="dark:invert"
-            width={100}
-            height={24}
-            priority
-          />
+          <Image src="/vercel.svg" alt="Vercel Logo" className="dark:invert" width={100} height={24} priority />
         </a>
       </div>
     </header>

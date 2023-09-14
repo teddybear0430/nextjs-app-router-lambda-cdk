@@ -3,6 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   // next.jsをstandaloneモードでビルドする
   output: 'standalone',
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
