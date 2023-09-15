@@ -8,8 +8,8 @@ export default function Home() {
 
   return (
     <div>
-      <h2 className="text-lg">Menu</h2>
-      <ul className="list-disc">
+      <h1 className="text-3xl">Menu</h1>
+      <ul className="mt-2 list-disc">
         {MENU_LIST.map((menuItem) => (
           <li key={menuItem.path}>
             <Link href={menuItem.path}>{menuItem.text}</Link>
