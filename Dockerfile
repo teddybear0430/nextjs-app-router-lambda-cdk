@@ -21,6 +21,10 @@ COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+# nodeイメージにはnodeという名前のユーザとグループがデフォルトで存在しているので、権限をnodeというユーザに変更する
+# 権限を変更しないと、.next/cacheディレクトリに対して書き込みができないためキャッシュの生成ができず、
+# ブラウザからアクセスしたときに500エラーで落ちる
+COPY --from=builder --chown=node:node /app/.next/cache ./.next/cache
 
 # npmのcacheファイルを削除する
 RUN rm -rf /tmp/empty-cache
