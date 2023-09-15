@@ -6,19 +6,21 @@ type Props = {
 
 async function getPost(params: Props) {
   const API = process.env.API_KEY;
-  const topicRes = await fetch(`https://newsapi.org/v2/top-headlines?country=jp&category=${params.id}&apiKey=${API}`);
-  const topicJson = await topicRes.json();
 
-  const topicArticles = await topicJson.articles;
+  const res = await fetch(`https://newsapi.org/v2/top-headlines?country=jp&category=${params.id}&apiKey=${API}`);
+  const json = await res.json();
+  const articles = await json?.articles;
 
-  return topicArticles;
+  return articles;
 }
 
 export default async function NewsTopic({ params }: { params: Props }) {
-  const title = await getPost(params);
+  const articles = await getPost(params);
+
   return (
-    <div>
-      <Articles articles={title} />
-    </div>
+    <section>
+      <h1 className="text-3xl">{params.id}: news sample app</h1>
+      <Articles articles={articles} />
+    </section>
   );
 }
