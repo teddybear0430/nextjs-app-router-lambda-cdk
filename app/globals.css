@@ -22,6 +22,9 @@ body {
 }
 
 /* reset css */
-img {
-  max-width: initial;
+/* blog */
+#post {
+  img {
+    max-width: 100% !important;
+  }
 }
