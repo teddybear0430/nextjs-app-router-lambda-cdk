@@ -2,7 +2,13 @@ import Link from 'next/link';
 import { Cms } from '../../types/cms';
 
 export default async function Page() {
-  const MENU_LIST: Record<'text' | 'path', string>[] = [{ text: 'isr', path: '/blog/isr' }];
+  const MENU_LIST: Record<'text' | 'path', string>[] = [
+    { text: 'isr', path: '/blog/isr' },
+    {
+      text: 'sg',
+      path: '/blog/sg',
+    },
+  ];
 
   return (
     <div>
