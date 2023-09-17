@@ -14,7 +14,7 @@ async function getPost(params: Props) {
   return articles;
 }
 
-export default async function NewsTopic({ params }: { params: Props }) {
+export default async function Page({ params }: { params: Props }) {
   const articles = await getPost(params);
 
   return (

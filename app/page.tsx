@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Home() {
+export default function Page() {
   const MENU_LIST: Record<'text' | 'path', string>[] = [
     { text: 'sample page', path: '/sample' },
     { text: 'news app page', path: '/news' },
