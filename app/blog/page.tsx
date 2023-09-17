@@ -1,15 +1,12 @@
 import Link from 'next/link';
+import { Cms } from '../../types/cms';
 
-export default function Page() {
-  const MENU_LIST: Record<'text' | 'path', string>[] = [
-    { text: 'sample page', path: '/sample' },
-    { text: 'news app', path: '/news' },
-    { text: 'blog app', path: '/blog' },
-  ];
+export default async function Page() {
+  const MENU_LIST: Record<'text' | 'path', string>[] = [{ text: 'isr', path: '/blog/isr' }];
 
   return (
     <div>
-      <h1 className="text-3xl">Menu</h1>
+      <h1 className="text-3xl">blog menu</h1>
       <ul className="mt-2 list-disc">
         {MENU_LIST.map((menuItem) => (
           <li key={menuItem.path}>

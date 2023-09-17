@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Cms } from '../../types/cms';
+import { Cms } from '../../../types/cms';
 
 export default async function Page() {
   const res = await fetch(`https://karukichi-tech-blog.microcms.io/api/v1/blogs`, {
@@ -14,7 +14,7 @@ export default async function Page() {
       <ul>
         {contents.map((post) => (
           <li key={post.id} className="py-1">
-            <Link href={`/blog-isr/${post.id}`} className="text-blue-500 underline">
+            <Link href={`/blog/isr/${post.id}`} className="text-blue-500 underline">
               {post.title}
             </Link>
           </li>

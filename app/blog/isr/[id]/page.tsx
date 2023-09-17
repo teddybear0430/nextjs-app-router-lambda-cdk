@@ -1,5 +1,3 @@
-import { Articles } from '../../../components/news/Articles';
-
 type Props = {
   id: string;
 };
