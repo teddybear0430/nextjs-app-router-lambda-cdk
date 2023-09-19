@@ -29,8 +29,5 @@ COPY --from=builder --chown=node:node /app/.next/cache ./.next/cache
 # npmのcacheファイルを削除する
 RUN rm -rf /tmp/empty-cache
 
-# rootで実行する必要がないので、非ルートユーザを指定するようにして、実行権限は最小限に留める
-USER 1001
-
 ENTRYPOINT ["node"]
 CMD ["server.js"]
